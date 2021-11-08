@@ -21,6 +21,7 @@ const Login = () => {
           "login",
           JSON.stringify({
             userLogin: true,
+            userMail: email,
             token: response.data.access_token,
           })
         );
@@ -41,7 +42,6 @@ const Login = () => {
           <h1 className={styles["login-text"]}>Log In</h1>
           {error && <p className={styles["error-text"]}>{error}</p>}
           <p className={styles["login-label"]}>Email adress</p>
-          {/* <text id="username" label="Username" variant="standard" /> */}
 
           <input
             id="email"

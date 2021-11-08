@@ -12,8 +12,10 @@ import styles from "./Home.module.scss";
 
 import MobileLeftMenuSlider from "@material-ui/core/Drawer";
 import { IconButton } from "@material-ui/core";
+import GalleryPopper from "../../features/GalleryPopper/GalleryPopper";
 
-import axios from "axios";
+import api from "../../api/users";
+import users from "../../api/users";
 
 const Home = () => {
   const [state, setState] = useState({
@@ -24,20 +26,80 @@ const Home = () => {
     setState({ ...state, [slider]: open });
   };
 
-  const [images, setImages] = useState([]);
+  const retrieveUser = async () => {
+    const response = await api.get("/users");
+    return response.data;
+  };
+
+  const [userId, setAllUsers] = useState([]);
 
   useEffect(() => {
-    axios.get("https://www.breakingbadapi.com/api/characters").then((res) => {
-      setImages(res.data);
-      console.log(res.data);
+    const getAllUsers = async () => {
+      const allUsers = await retrieveUser();
+      if (allUsers) setAllUsers(allUsers);
+    };
+    getAllUsers();
+  }, []);
+
+  const addMessage = async (user) => {
+    console.log(user);
+    const request = {
+      ...user,
+    };
+    const response = await api.post("/users", request);
+    /* console.log(response); */
+    setAllUsers([users, response.data]);
+  };
+
+  const removeMessage = async (id) => {
+    await api.delete(`/users/${id}`);
+    console.log(users);
+    const userArray = Object.keys(users);
+    const newUserList = userArray.filter((user) => {
+      return user.id !== id;
     });
+    console.log(newUserList);
+    setAllUsers(newUserList);
+  };
+
+  const editMessage = async (user) => {
+    const response = await api.put(`/users/${user.id}`, user);
+    const { id, text } = response.data;
+    setAllUsers(
+      users.map((user) => {
+        return user.id === id ? { ...response } : user;
+      })
+    );
+  };
+
+  const [userHeader, setUserHeader] = useState([]);
+
+  useEffect(() => {
+    const storage = localStorage.getItem("login");
+    const obj = JSON.parse(storage);
+    setUserHeader(obj.userMail);
   }, []);
 
   const [selected, setSelected] = useState(null);
 
   const showImgModal = (e) => {
     setSelected(e.target.src);
-    console.log(selected);
+  };
+
+  const [searchValue, setSearchValue] = useState("");
+
+  const filterNames = ({ name }) => {
+    if (name !== undefined) {
+      return name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1;
+    } else {
+      return null;
+    }
+  };
+
+  const [info, setInfo] = useState([]);
+  const reviewInformation = (information) => {
+    const selectedImage = information;
+    setInfo(selectedImage);
   };
 
   const sideList = (slider) => (
@@ -59,35 +121,43 @@ const Home = () => {
             alt="search icon"
           />
           <input
+            onChange={(e) => setSearchValue(e.target.value)}
+            value={searchValue}
             placeholder="Search showcase..."
             className={styles["input-field-mobile"]}
           ></input>
+          <div>
+            {userId.filter(filterNames).map((img, index) => {
+              return (
+                <>
+                  <div className={styles["images-cards-mobile"]} key={index}>
+                    <div>
+                      <img
+                        src={img.img}
+                        loading="lazy"
+                        className={styles["images-mobile"]}
+                        alt={img.name}
+                      />
+                    </div>
+                    <div>
+                      <p>{img.name}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <button
+                      className={styles["review-button"]}
+                      onClick={() =>
+                        reviewInformation({ image: img.img, name: img.name })
+                      }
+                    >
+                      REVIEW <ButtonArrow className={styles["button-arrow"]} />
+                    </button>
+                  </div>
+                </>
+              );
+            })}
+          </div>
         </div>
-        {images.map((img, index) => (
-          <>
-            <div className={styles["images-cards-mobile"]} key={index}>
-              <div>
-                <img
-                  src={img.img}
-                  loading="lazy"
-                  className={styles["images-mobile"]}
-                  alt={img.name}
-                />
-              </div>
-              <div>
-                <p>{img.name}</p>
-              </div>
-            </div>
-            <div>
-              <button
-                className={styles["review-button"]}
-                onClick={showImgModal}
-              >
-                REVIEW <ButtonArrow className={styles["button-arrow"]} />
-              </button>
-            </div>
-          </>
-        ))}
       </div>
     </div>
   );
@@ -115,7 +185,7 @@ const Home = () => {
           <div>
             <UserIcon />
           </div>
-          <div>Name</div>
+          <div>{userHeader}</div>
           <div>
             <DropDownIcon />
           </div>
@@ -125,11 +195,21 @@ const Home = () => {
       <div className={styles["body-container"]}>
         <div className={styles["display-image-container"]}>
           <img
-            src={DisplayImage}
+            src={info.image ? info.image : DisplayImage}
             className={styles["display-image"]}
-            alt="display "
+            alt="display"
           />
+          <p>{info.name}</p>
+          <div className={styles["gallery-popper"]}>
+            <GalleryPopper
+              addMessage={addMessage}
+              userId={userId}
+              removeMessage={removeMessage}
+              editMessage={editMessage}
+            />
+          </div>
         </div>
+
         <div className={styles["image-gallery-container"]}>
           <div>
             <p className={styles["image-gallery-text"]}>Image Gallery</p>
@@ -141,11 +221,13 @@ const Home = () => {
               alt="search icon"
             />
             <input
+              onChange={(e) => setSearchValue(e.target.value)}
+              value={searchValue}
               placeholder="Search showcase..."
               className={styles["input-field"]}
             ></input>
           </div>
-          {images.map((img, index) => (
+          {userId.filter(filterNames).map((img, index) => (
             <>
               <div className={styles["images-cards"]} key={index}>
                 <div>
@@ -164,6 +246,9 @@ const Home = () => {
                 <button
                   className={styles["review-button"]}
                   onClick={showImgModal}
+                  onClick={() =>
+                    reviewInformation({ image: img.img, name: img.name })
+                  }
                 >
                   REVIEW <ButtonArrow className={styles["button-arrow"]} />
                 </button>

@@ -53,20 +53,31 @@
 .display-image-container {
   height: 100%;
   padding: 92px 50px;
-  overflow-y: hidden;
   display: inline-block;
   box-sizing: border-box;
+
+  .gallery-popper {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 50px;
+    margin-top: 150px;
+  }
 
   @media only screen and (min-width: 960px) {
     padding: 92px 0px;
     margin: 0 50px;
     width: 50%;
+
+    .gallery-popper {
+      margin-top: 0px;
+    }
   }
 
   @media only screen and (min-width: 1240px) {
     display: flex;
-    align-items: center;
-    padding: 92px 100px;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 92px 150px;
     margin: 0 0px;
     width: 100%;
   }
@@ -81,6 +92,7 @@
 
   @media only screen and (min-width: 960px) {
     overflow-y: scroll;
+    overflow-x: hidden;
     box-sizing: border-box;
     display: block;
     width: 50%;
@@ -118,6 +130,8 @@
   background-color: Teal;
   color: white;
   gap: 10px;
+  height: 40px;
+  cursor: pointer;
   .button-arrow {
     width: 20px;
     height: 16px;

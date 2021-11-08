@@ -1,4 +1,90 @@
 {
-    "users": [{"id":1, "email": "milic00@fesb.hr", "password":"123456"},
-              {"id":2, "email": "mail@gmail.com", "password":"123456!M"}]
-}   
+  "users": [
+    {
+      "id": 1,
+      "email": "milic00@fesb.hr",
+      "name": "milic",
+      "password": "123456",
+      "img": "https://www.pngitem.com/pimgs/m/677-6778674_mail-icon-rood-rgb-mail-logo-png-black.png",
+      "text": ""
+    },
+    {
+      "id": 2,
+      "email": "walter@gmail.com",
+      "name": "Walter White",
+      "password": "1234567",
+      "img": "https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg.jpg"
+    },
+    {
+      "id": 3,
+      "email": "jesse@gmail.com",
+      "name": "Jesse Pinkman",
+      "password": "123456!M",
+      "img": "https://vignette.wikia.nocookie.net/breakingbad/images/9/95/JesseS5.jpg/revision/latest?cb=20120620012441"
+    },
+    {
+      "id": 4,
+      "email": "mail@gmail.com",
+      "name": "Skyler White",
+      "password": "123456!M",
+      "img": "https://s-i.huffpost.com/gen/1317262/images/o-ANNA-GUNN-facebook.jpg"
+    },
+    {
+      "id": 5,
+      "email": "mail@gmail.com",
+      "name": "Walter White Jr.",
+      "password": "123456!M",
+      "img": "https://media1.popsugar-assets.com/files/thumbor/WeLUSvbAMS_GL4iELYAUzu7Bpv0/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2018/01/12/910/n/1922283/fb758e62b5daf3c9_TCDBRBA_EC011/i/RJ-Mitte-Walter-White-Jr.jpg"
+    },
+    {
+      "id": 6,
+      "email": "mail@gmail.com",
+      "name": "Henry Schrader",
+      "password": "123456!M",
+      "img": "https://vignette.wikia.nocookie.net/breakingbad/images/b/b7/HankS5.jpg/revision/latest/scale-to-width-down/700?cb=20120620014136"
+    },
+    {
+      "id": 7,
+      "email": "mail@gmail.com",
+      "name": "Marie Schrader",
+      "password": "123456!M",
+      "img": "https://vignette.wikia.nocookie.net/breakingbad/images/1/10/Season_2_-_Marie.jpg/revision/latest?cb=20120617211645",
+      "status": "Alive"
+    },
+    {
+      "id": 8,
+      "email": "mail@gmail.com",
+      "name": "Mike Ehrmantraut",
+      "password": "123456!M",
+      "img": "https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/cast_bb_700x1000_mike-ehrmantraut-lg.jpg",
+      "status": "Deceased"
+    },
+    {
+      "id": 9,
+      "email": "mail@gmail.com",
+      "name": "Saul Goodman",
+      "password": "123456!M",
+      "img": "https://vignette.wikia.nocookie.net/breakingbad/images/1/16/Saul_Goodman.jpg/revision/latest?cb=20120704065846",
+      "status": "Alive"
+    },
+    {
+      "id": 10,
+      "email": "mail@gmail.com",
+      "name": "Gustavo Fring",
+      "password": "123456!M",
+      "img": "https://vignette.wikia.nocookie.net/breakingbad/images/1/1f/BCS_S4_Gustavo_Fring.jpg/revision/latest?cb=20180824195925",
+      "status": "Deceased"
+    },
+    {
+      "id": 11
+    },
+    {
+      "text": "Lorem ipsum",
+      "id": 20
+    },
+    {
+      "text": "sad",
+      "id": 21
+    }
+  ]
+}

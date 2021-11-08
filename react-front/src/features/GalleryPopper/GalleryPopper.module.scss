@@ -1,0 +1,96 @@
+.chat-header {
+  background-color: #fec210;
+  width: 100%;
+  min-width: 300px;
+  border-radius: 5px;
+  overflow-x: hidden;
+  @media only screen and (min-width: 960px) {
+    width: 400px;
+  }
+}
+.chat-header-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 25px;
+  padding-top: 20px;
+  gap: 10px;
+}
+.chat-content {
+  background-color: white;
+}
+.button-margin {
+  padding-top: 52px;
+  cursor: pointer;
+}
+.close-chat-logo {
+  display: none;
+}
+.close-button {
+  display: block;
+}
+.shown-close-logo {
+  display: none;
+}
+.chat-flex {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+.chat-text-container {
+  background-color: #fec210;
+  margin-top: 10px;
+
+  .chat-text {
+    padding: 10px 0 0 10px;
+    height: 42px;
+    &:hover + .hidden {
+      display: block;
+    }
+  }
+}
+.chat-width {
+  width: 191px;
+  padding: 10px 0;
+}
+.hidden {
+  display: none;
+}
+.hidden-buttons-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  position: absolute;
+  margin-top: -40px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.hidden-buttons {
+  width: 30px;
+  height: 32px;
+  cursor: pointer;
+}
+.form {
+  position: relative;
+}
+.input-comment {
+  width: 85%;
+  height: 40px;
+  padding: 10px 20px;
+  border: none;
+  border-top: 1px solid black;
+  border-radius: 5px;
+  @media only screen and (min-width: 960px) {
+    width: 95%;
+  }
+}
+.send-button {
+  position: absolute;
+  left: 90%;
+  top: 20px;
+  cursor: pointer;
+  @media only screen and (min-width: 960px) {
+    left: 350px;
+  }
+}
