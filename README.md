@@ -4,7 +4,7 @@ App with login functionality (React)
 
 To run the app 
 ```console
-https://github.com/milic12/App-with-login-and-crude.git
+git clone https://github.com/milic12/App-with-login-and-crude.git
 ```
 on server side run in terminal:
 ```console
