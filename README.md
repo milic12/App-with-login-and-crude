@@ -19,7 +19,7 @@ npm install
 npm start
 ```
 
-try to log in with pass:
+try to log in with :
 ```console
 mail@gmail.com 123456!M,
 walter@gmail.com 1234567
