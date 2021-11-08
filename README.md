@@ -9,8 +9,8 @@ git clone https://github.com/milic12/app-with-login.git
 on server side run in terminal:
 ```console
 npm install
-npm run auth
-npm start
+npm run auth // run node.js server
+npm start    // json-server
 ```
 on front run:
 
